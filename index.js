@@ -1,15 +1,17 @@
-const arr = [-4, -1, 0, 3, 10];
-const squres = findSquare(arr);
-console.log(squres);
+const arr = [1, 2, 3, 4, 5, 1]
+console.log(arr);
+const duplicate = findDuplicate(arr);
 
-function findSquare(arr) {
-    const squares = [];
+console.log(duplicate);
 
-    for (let i = 0; i < arr.length; i++) {
-        squares.push(arr[i] * arr[i]);
+function findDuplicate(arr) {
+    const set = new Set();
+    for (let i = 0; arr.length; i++) {
+        if (set.has(arr[i])) {
 
+            return arr[i];
+        } else {
+            set.add(arr[i])
+        }
     }
-
-    squares.sort((a, b) => a - b);
-    return squares;
 }
