@@ -1,20 +1,15 @@
-function findMaxConsecutiveOnes(arr) {
-    let maxOnes = 0;
-    let currentOnes = 0;
+const arr = [-4, -1, 0, 3, 10];
+const squres = findSquare(arr);
+console.log(squres);
+
+function findSquare(arr) {
+    const squares = [];
 
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i] == 1) {
-            currentOnes++;
+        squares.push(arr[i] * arr[i]);
 
-        } else {
-            currentOnes = 0;
-        }
-        maxOnes = Math.max(maxOnes, currentOnes);
     }
-    return maxOnes;
+
+    squares.sort((a, b) => a - b);
+    return squares;
 }
-
-const arr = [1, 1, 1, 0, 1, 1, 1, 0, 1];
-
-const maxOnes = findMaxConsecutiveOnes(arr);
-console.log(maxOnes);
