@@ -1,23 +1,36 @@
-const arr = [1, 2, 3, 4, 5];
-console.log(arr);
-const maximum = findthirdMaxinumber(arr);
-console.log(maximum);
+function findMedian(nums1, nums2) {
+    const m = nums1.length;
+    const n = nums2.length;
 
-function findthirdMaxinumber(arr) {
-    let max1 = arr[0];
-    let max2 = arr[0];
-    let max3 = arr[0];
+    if (m == 0) {
+        return nums2[Math.floor(n / 2)]
 
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[i] > max1) {
-            max3 = max2;
-            max2 = max1;
-            max1 = arr[i]
-        } else {
-            max3 = max2;
-            max2 = arr[i];
-        }
     }
-    return max3;
 
+    if (n == 0) {
+        return nums1[Math.floor(m / 2)]
+    }
+    const mid1 = Math.floor(m / 2);
+    const mid2 = Math.floor(n / 2);
+
+    const x = nums1[mid1];
+    const y = nums2[mid2];
+
+
+    if (x <= y) {
+        return findMedian(nums1.slice(mid1 + 1), nums2);
+    } else {
+        return findMedian(nums2, nums2.slice(mid2 + 1));
+    }
 }
+const nums1 = [1, 3];
+const nums2 = [3];
+
+const median = findMedian(nums1, nums2);
+console.log(median);
+
+
+let z = Math.round(4.4)
+let k = Math.ceil(4.3);
+console.log(k);
+console.log(z);
