@@ -1,19 +1,18 @@
-const nums = [1, 1, 2];
-const uniqueCount = removeDuplicants(nums);
-console.log(uniqueCount);
-console.log(nums.slice(0, uniqueCount));
+function removeElement(nums, val) {
+    let k = 0; // Index to place the next element that is not equal to val
 
-function removeDuplicants(nums) {
-    if (nums.length === 0) {
-        return 0;
-    }
-    let k = 1;
-
-    for (let i = 1; i < nums.length; i++) {
-        if (nums[i] != nums[i - 1]) {
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] !== val) {
             nums[k] = nums[i];
             k++;
         }
     }
+
     return k;
 }
+
+const nums = [3, 2, 2, 3];
+const val = 3;
+const remainingCount = removeElement(nums, val);
+console.log(remainingCount); // Outputs: 2
+console.log(nums.slice(0, remainingCount)); // Outputs: [2, 2]
