@@ -1,36 +1,34 @@
-function findMedian(nums1, nums2) {
-    const m = nums1.length;
-    const n = nums2.length;
+function threeSum(nums) {
+    const result = [];
 
-    if (m == 0) {
-        return nums2[Math.floor(n / 2)]
+    nums.sort((a, b) => a - b); // Sort the array in ascending order
 
+    for (let i = 0; i < nums.length - 2; i++) {
+        if (i > 0 && nums[i] === nums[i - 1]) {
+            continue; // Skip duplicate values for i
+        }
+
+        for (let j = i + 1; j < nums.length - 1; j++) {
+            if (j > i + 1 && nums[j] === nums[j - 1]) {
+                continue; // Skip duplicate values for j
+            }
+
+            for (let k = j + 1; k < nums.length; k++) {
+                if (k > j + 1 && nums[k] === nums[k - 1]) {
+                    continue; // Skip duplicate values for k
+                }
+
+                const sum = nums[i] + nums[j] + nums[k];
+                if (sum === 0) {
+                    result.push([nums[i], nums[j], nums[k]]);
+                }
+            }
+        }
     }
 
-    if (n == 0) {
-        return nums1[Math.floor(m / 2)]
-    }
-    const mid1 = Math.floor(m / 2);
-    const mid2 = Math.floor(n / 2);
-
-    const x = nums1[mid1];
-    const y = nums2[mid2];
-
-
-    if (x <= y) {
-        return findMedian(nums1.slice(mid1 + 1), nums2);
-    } else {
-        return findMedian(nums2, nums2.slice(mid2 + 1));
-    }
+    return result;
 }
-const nums1 = [1, 3];
-const nums2 = [3];
 
-const median = findMedian(nums1, nums2);
-console.log(median);
-
-
-let z = Math.round(4.4)
-let k = Math.ceil(4.3);
-console.log(k);
-console.log(z);
+const nums = [-1, 0, 1, 2, -1, -4];
+const result = threeSum(nums);
+console.log(result); // Outputs: [[-1, -1, 2], [-1, 0, 1]]
