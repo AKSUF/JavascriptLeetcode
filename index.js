@@ -1,19 +1,36 @@
-function isPalindrome(x) {
-    if (x < 0) {
-        return false;
-    }
+const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    const numStr = x.toString();
-    const n = numStr.length;
+let target = 8;
 
-    for (let i = 0; i < Math.floor(n / 2); i++) {
-        if (numStr[i] !== numStr[n - 1 - i]) {
-            return false;
-        }
+
+let result = searchRange(nums, target);
+
+console.log(result);
+
+function searchRange(nums, target) {
+    let firstOcurrencr = findFirstOccurnce(nums, target);
+
+    if (firstOcurrencr === -1) {
+        return [-1, -1];
     }
-    return true;
+    const lastOccuurence = findLastOccurence(nums, target);
+    return [firstOcurrencr, lastOccuurence];
 }
 
-const x = 121;
-const result = isPalindrome(x);
-console.log(result);
+function findFirstOccurnce(nums, target) {
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] === target) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+function findLastOccurence(nums, target) {
+    for (let i = nums.length - 1; i >= 0; i--) {
+        if (nums[i] === target) {
+            return i;
+        }
+    }
+    return -1;
+}
