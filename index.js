@@ -1,18 +1,34 @@
-function removeElement(nums, val) {
-    let k = 0; // Index to place the next element that is not equal to val
+function nextPermutation(nums) {
+    let i = nums.length - 1;
+    while (i > 0 && nums[i - 1] >= nums[i]) {
+        i--;
+    }
+    if (i == 0) {
+        nums.reverse();
+        return;
+    }
+    let j = nums.length - 1;
+    while (nums[j] <= nums[i - 1]) {
+        j--;
+    }
+    let temp = nums[i - 1];
+    nums[i - 1] = nums[j];
+    nums[j] = temp;
 
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] !== val) {
-            nums[k] = nums[i];
-            k++;
-        }
+    let start = i;
+    let end = nums.length - 1;
+    while (start < end) {
+        temp = nums[start];
+        nums[start] = nums[end];
+        start++;
+        end--;
     }
 
-    return k;
 }
 
-const nums = [3, 2, 2, 3];
-const val = 3;
-const remainingCount = removeElement(nums, val);
-console.log(remainingCount); // Outputs: 2
-console.log(nums.slice(0, remainingCount)); // Outputs: [2, 2]
+
+nums = [1, 2, 3];
+
+nextPermutation(nums);
+
+console.log(nums);
