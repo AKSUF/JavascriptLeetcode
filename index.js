@@ -1,35 +1,19 @@
-function search(nums, target) {
-    const n = nums.length;
-
-    let left = 0;
-    let right = n - 1;
-
-    while (left <= right) {
-        const mid = Math.floor((left + right) / 2);
-
-        if (nums[mid] === target) {
-            return mid;
-        }
-
-        if (nums[left] <= nums[mid]) {
-            if (nums[left] <= target && target <= nums[mid]) {
-                right = mid - 1;
-            } else {
-                left = mid + 1;
-            }
-        } else {
-            if (nums[mid] <= target && target <= nums[right]) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
+function isPalindrome(x) {
+    if (x < 0) {
+        return false;
     }
 
-    return -1;
+    const numStr = x.toString();
+    const n = numStr.length;
+
+    for (let i = 0; i < Math.floor(n / 2); i++) {
+        if (numStr[i] !== numStr[n - 1 - i]) {
+            return false;
+        }
+    }
+    return true;
 }
 
-const nums = [4, 5, 6, 7, 0, 1, 2];
-const target = 0;
-const result = search(nums, target);
-console.log(result); // Output: 4
+const x = 121;
+const result = isPalindrome(x);
+console.log(result);
