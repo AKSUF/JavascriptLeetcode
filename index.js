@@ -1,14 +1,21 @@
-const nums = [1, 2, 3, 4, 5, 6, 7]
-let target = 5;
-let result = insertposition(nums, target);
-console.log(result);
+function permutate(nums) {
+    const result = [];
 
-function insertposition(nums, target) {
-    let i;
-
-    for (i = 0; i < nums.length; i++) {
-        if (nums[i] >= target)
-            break;
+    function generatePermutations(index) {
+        if (index === nums.length - 1) {
+            result.push([...nums]);
+            return;
+        }
+        for (let i = index; i < nums.length; i++) {
+            [nums[index], nums[i]] = [nums[i], nums[index]];
+            generatePermutations(index + 1);
+            [nums[index], nums[i]] = [nums[i], nums[index]];
+        }
     }
-    return i;
+    generatePermutations(0);
+    return result;
 }
+
+const nums = [1, 2, 3];
+const permutations = permutate(nums);
+console.log(permutations);
