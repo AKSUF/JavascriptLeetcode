@@ -1,21 +1,21 @@
-function permutate(nums) {
-    const result = [];
+function rotate(matrix) {
+    const n = matrix.length;
+    const result = new Array(n).fill(null).map(() => new Array(n));
 
-    function generatePermutations(index) {
-        if (index === nums.length - 1) {
-            result.push([...nums]);
-            return;
-        }
-        for (let i = index; i < nums.length; i++) {
-            [nums[index], nums[i]] = [nums[i], nums[index]];
-            generatePermutations(index + 1);
-            [nums[index], nums[i]] = [nums[i], nums[index]];
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            result[i][j] = matrix[n - j - 1][i];
         }
     }
-    generatePermutations(0);
+
     return result;
 }
 
-const nums = [1, 2, 3];
-const permutations = permutate(nums);
-console.log(permutations);
+const matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+
+const rotatedMatrix = rotate(matrix);
+console.log(rotatedMatrix);
